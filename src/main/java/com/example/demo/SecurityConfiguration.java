@@ -19,7 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests().anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login").permitAll();   //permitALL() everyone has access to the specific path "/login"
 
         //for accessing H2 for debugging purpose
         httpSecurity.csrf().ignoringAntMatchers("/h2-console/**");
@@ -39,8 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .withDefaultSchema()
-                .withUser("user")
-                .password(passwordEncoder().encode("user"))
+                .withUser("admin")
+                .password(passwordEncoder().encode("pass"))
                 .roles("USER");
     }
 }
