@@ -20,4 +20,9 @@ public class HomeController {
     public String admin(){
         return "admin";
     }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        return "redirect:/login?logout=true"; //redirect is a keyword redirecting to @RequestMapping("/login") while ?logout is changing logout to true
+    }
 }
